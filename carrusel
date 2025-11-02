@@ -1,4 +1,5 @@
 // Requisito: Las imágenes deben estar en un array (arreglo).
+
 const imagenes = [
     'img/carrusel_1.jpg', 
     'img/carrusel_2.jpg',
@@ -8,10 +9,11 @@ const imagenes = [
 
 let indiceActual = 0;
 // Manipulación del DOM: Seleccionar el contenedor
+
 const slideContainer = document.getElementById('carousel-slide');
 
 function initCarousel() {
-    // Uso de document.createElement (Manipulación del DOM)
+  
     imagenes.forEach(src => {
         const img = document.createElement('img');
         img.src = src;
@@ -29,7 +31,7 @@ function actualizarPosicionCarrusel() {
 
 function nextSlide() {
     indiceActual++;
-    // Requisito: Rotación circular (al final vuelve al principio)
+
     if (indiceActual >= imagenes.length) {
         indiceActual = 0;
     }
@@ -39,6 +41,7 @@ function nextSlide() {
 function prevSlide() {
     indiceActual--;
     // Requisito: Rotación circular (al principio vuelve al final)
+   
     if (indiceActual < 0) {
         indiceActual = imagenes.length - 1;
     }
@@ -47,4 +50,5 @@ function prevSlide() {
 
 document.addEventListener('DOMContentLoaded', initCarousel);
 // Uso del BOM (window) para manejo de eventos de ventana
+
 window.addEventListener('resize', actualizarPosicionCarrusel);

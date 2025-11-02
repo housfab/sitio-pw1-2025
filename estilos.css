@@ -1,14 +1,16 @@
 /* Paleta de Colores Burdeos/Vino */
+
 :root {
     --color-fondo-principal: #1a1111; 
     --color-fondo-secundario: #2c1a1a; 
     --color-texto-principal: #E0D2D2; 
-    --color-acento: #800020; /* Bordó / Vino Oscuro */
-    --color-highlight: #DAA520; /* Dorado para destacar textos y enlaces */
+    --color-acento: #800020; 
+    --color-highlight: #DAA520;
     --color-error: #FF6347; 
 }
 
 /* Estilos Generales y Modelo de Caja */
+
 body {
     background-color: var(--color-fondo-principal); 
     color: var(--color-texto-principal);
@@ -22,7 +24,7 @@ body {
     background-size: cover; 
     background-position: center center; 
     background-repeat: no-repeat; 
-    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+    background-attachment: fixed; 
 }
 
 .container {
@@ -32,6 +34,7 @@ body {
 }
 
 /* --- MENÚ DE NAVEGACIÓN (FLEXBOX y Pseudo-Elementos) --- */
+
 .nav-list {
     list-style: none;
     padding: 0;
@@ -52,6 +55,7 @@ body {
 }
 
 /* PSEUDO-ELEMENTO */
+
 .nav-list li a::before {
     content: "❯"; 
     color: var(--color-highlight); 
@@ -140,6 +144,7 @@ body {
 }
 
 /* --- FORMULARIO Y VALIDACIÓN --- */
+
 .form-container {
     max-width: 600px;
     margin: 40px auto;
@@ -149,6 +154,7 @@ body {
 }
 
 /* APLICACIÓN DE FLEXBOX AL GRUPO DE FORMULARIO */
+
 .form-group {
     display: flex; 
     flex-direction: column; 
@@ -171,6 +177,7 @@ body {
 }
 
 /* --- ESTILO DEL BOTÓN --- */
+
 form button[type="submit"] {
     padding: 12px 25px;
     margin-top: 20px; 
