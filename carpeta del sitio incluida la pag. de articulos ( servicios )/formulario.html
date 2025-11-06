@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sé Parte</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="nav-container">
+        <nav class="nav-menu">
+            <ul class="nav-list">
+                <li><a href="index.html">Principal</a></li>
+                <li><a href="articulos.html">Servicios</a></li>
+                <li><a href="formulario.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <div class="form-container">
+        <h2>¡Sé Parte!</h2>
+        <p style="color: var(--color-highlight); margin-bottom: 25px;">Regístrate para obtener **descuentos**, **promociones** y **novedades** exclusivas.</p>
+        
+        <form id="adhesionForm" novalidate>
+            
+            <div class="form-group">
+                <label for="usuario">Nombre de Usuario:</label>
+                <input type="text" id="usuario" name="usuario" required 
+                       pattern="^(?=.*\d).{5,}$" 
+                       title="Debe contener al menos 1 número (0-9) y tener 5 caracteres como mínimo."
+                       maxlength="20">
+                <span class="error-message" aria-live="polite"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="correo">Mail:</label>
+                <input type="email" id="correo" name="correo" required 
+                       title="Debe ser un correo válido.">
+                <span class="error-message" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required 
+                       pattern="[a-zA-Z]{3,}" 
+                       title="El nombre debe tener al menos 3 letras."
+                       maxlength="50">
+                <span class="error-message" aria-live="polite"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" required 
+                       pattern="[a-zA-Z]{3,}" 
+                       title="El apellido debe tener al menos 3 letras."
+                       maxlength="50">
+                <span class="error-message" aria-live="polite"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" required 
+                       pattern="^\+?\d{3,17}$" 
+                       title="El teléfono debe tener entre 3 y 17 dígitos (opcionalmente con +)." > 
+                <span class="error-message" aria-live="polite"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required 
+                       minlength="6"
+                       title="La contraseña debe tener al menos 6 caracteres.">
+                <span class="error-message" aria-live="polite"></span>
+            </div>
+
+            <button type="submit">Enviar Solicitud</button>
+            
+            <div id="data-success" style="display:none;">
+            </div>
+        </form>
+    </div>
+    
+    <div class="site-footer nav-menu" style="text-align: center; margin-top: 50px;">
+        <p>© 2025 Proyecto Académico. Derechos reservados.</p>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('adhesionForm');
+            const inputs = form.querySelectorAll('input');
+            const dataSuccess = document.getElementById('data-success');
+
+            function validarCampo(input) {
+                const errorMessageSpan = input.nextElementSibling;
+                errorMessageSpan.style.display = 'none';
+                input.classList.remove('invalid', 'valid');
+                
+                if (input.validity.valid) {
+                    input.classList.add('valid');
+                    return true;
+                } else {
+                    let errorMessage = '';
+                    
+                    if (input.validity.valueMissing) {
+                        errorMessage = 'Este campo es obligatorio.';
+                    } else if (input.validity.patternMismatch || input.validity.tooShort || input.validity.typeMismatch) {
+                        errorMessage = input.title || 'El formato no es válido.';
+                    } else {
+                        errorMessage = 'El valor ingresado es inválido.';
+                    }
+                    
+                    errorMessageSpan.textContent = errorMessage;
+                    errorMessageSpan.style.display = 'block';
+                    input.classList.add('invalid');
+                    return false;
+                }
+            }
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault(); 
+                let formValido = true;
+                
+                inputs.forEach(input => {
+                    if (!validarCampo(input)) { 
+                        formValido = false;
+                    }
+                });
+
+                if (formValido) {
+                    
+                    dataSuccess.innerHTML = ''; 
+                    
+                    // Se muestran solo los mensajes de éxito (DOM)
+                    const mensajeExito = document.createElement('h3');
+                    mensajeExito.textContent = "¡Ya eres parte!"; 
+                    mensajeExito.style.color = 'var(--color-highlight)';
+                    dataSuccess.appendChild(mensajeExito);
+                    
+                    const pMensaje = document.createElement('p'); 
+                    pMensaje.textContent = "Tus datos fueron enviados correctamente. ¡Bienvenido!";
+                    dataSuccess.appendChild(pMensaje);
+                    
+                    form.reset();
+                    inputs.forEach(input => input.classList.remove('valid'));
+                    dataSuccess.style.display = 'block';
+                } else {
+                    dataSuccess.style.display = 'none'; 
+                    form.querySelector('.invalid').focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
