@@ -1,5 +1,6 @@
 /* Paleta de Colores Burdeos/Vino */
 
+
 :root {
     --color-fondo-principal: #1a1111; 
     --color-fondo-secundario: #2c1a1a; 
@@ -145,8 +146,9 @@ body {
 
 /* --- FORMULARIO Y VALIDACIÓN --- */
 
+
 .form-container {
-    max-width: 600px;
+    max-width: 400px;
     margin: 40px auto;
     padding: 30px;
     background-color: var(--color-fondo-secundario);
