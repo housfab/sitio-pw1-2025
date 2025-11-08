@@ -1,0 +1,58 @@
+
+// Requisito: Las imágenes deben estar en un array (arreglo).
+
+const imagenes = [
+    'img/carrusel_1.jpg', 
+    'img/carrusel_2.jpg',
+    'img/carrusel_3.jpg',
+    'img/carrusel_4.jpg',
+    'img/carrusel_5.jpg',
+    'img/carrusel_6.jpg',
+    'img/carrusel_7.jpg',
+];
+
+let indiceActual = 0;
+// Manipulación del DOM: Seleccionar el contenedor
+
+const slideContainer = document.getElementById('carousel-slide');
+
+function initCarousel() {
+  
+    imagenes.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        slideContainer.appendChild(img);
+    });
+    actualizarPosicionCarrusel();
+}
+
+function actualizarPosicionCarrusel() {
+    if (slideContainer.children.length > 0) {
+        const anchoSlide = slideContainer.children[0].clientWidth;
+        slideContainer.style.transform = `translateX(${-anchoSlide * indiceActual}px)`;
+    }
+}
+
+function nextSlide() {
+    indiceActual++;
+
+    if (indiceActual >= imagenes.length) {
+        indiceActual = 0;
+    }
+    actualizarPosicionCarrusel();
+}
+
+function prevSlide() {
+    indiceActual--;
+    // Requisito: Rotación circular (al principio vuelve al final)
+   
+    if (indiceActual < 0) {
+        indiceActual = imagenes.length - 1;
+    }
+    actualizarPosicionCarrusel();
+}
+
+document.addEventListener('DOMContentLoaded', initCarousel);
+// Uso del BOM (window) para manejo de eventos de ventana
+
+window.addEventListener('resize', actualizarPosicionCarrusel);
