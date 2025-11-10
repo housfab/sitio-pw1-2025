@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>trabajo integrador</title>
-    <link rel="stylesheet" href="estilos.css"> 
+    <link rel="stylesheet" href="carpeta del sitio incluida la pag. de articulos ( servicios )/estila/estilos.css"> 
     
     <style>
         .carousel-container { max-width: 900px; margin: 40px auto; position: relative; overflow: hidden; border: 5px solid var(--color-acento); border-radius: 10px; }
@@ -26,7 +26,7 @@
         <nav class="nav-menu">
             <ul class="nav-list">
                 <li><a href="index.html">Principal</a></li>
-                <li><a href="articulo.html">Servicios</a></li>
+                <li><a href="carpeta del sitio incluida la pag. de articulos ( servicios )/articulos.html">Servicios</a></li>
                 <li><a href="formulario.html">Contacto</a></li>
             </ul>
         </nav>
@@ -39,7 +39,7 @@
         
         <p class="lema">"Tecnología Integral. Soluciones Técnicas en Cada Área."</p>
 
-        <p>Una Empresa laboratorio , taller , que hace Asesoramientos en todo tipo de tecnologias : <a href="https://www.youtube.com/watch?v=LEGNsnHSThA" target="_blank ">Instalaciones de gas</a> , <a href="https://www.youtube.com/watch?v=eo1aPBdRdrc" target="_blank ">Plomeria </a> , <a href="https://www.facebook.com/carlospannorefrigeracion" target="_blank ">Refrigeracion y aire acondicionado</a> . Enseñanza en el uso de (dispositivos tecnicos y cientificos) entre otros , asi como tambien trabajos en electrotecnia electronica informatica tecnica ; metalurgica herreria (colocacion de antenas, diagnostico, reparacion , y mantemiento de PC, instalacion y configuracion de camara de seguridad , soluciones informaticas : paginas webs);</p>
+        <p>Una Empresa laboratorio , taller , que hace Asesoramientos en todo tipo de tecnologias : <a href="https://www.youtube.com/watch?v=LEGNsnHSThA" target="_blank ">Instalaciones de gas</a> , <a href="https://www.youtube.com/watch?v=eo1aPBdRdrc" target="_blank ">Plomeria </a> , <a href="https://www.facebook.com/carlospannorefrigeracion" target="_blank ">Refrigeracion y aire acondicionado</a> . Enseñanza en el uso de (dispositivos tecnicos y cientificos) entre otros , asi como tambien trabajos en electrotecnia electronica informatica tecnica ; metalurgica herreria (colocacion de antenas, diagnostico, reparacion , y mantemiento de PC, cambios de modulos de smart phone,  instalacion y configuracion de camara de seguridad , soluciones informaticas : paginas webs);</p>
         
         <div style="margin-top: 50px;">
             <p>AQUI ESTA LO QUE UD PUEDE ENCONTRAR EN LA EMPRESA LABORATORIO</p>
@@ -56,43 +56,13 @@
         <p>© 2025 Proyecto Académico.</p>
     </div>
 
-    <script>
-        const imagenes = [ 
-            'img/carrusel_1.jpg', 'img/carrusel_2.jpg','img/carrusel_3.jpg','img/carrusel_4.jpg'
-        ];
-        let indiceActual = 0;
-        const slideContainer = document.getElementById('carousel-slide');
-        
-        function initCarousel() {
-            imagenes.forEach(src => {
-                const img = document.createElement('img'); 
-                img.src = src;
-                slideContainer.appendChild(img);
-            });
-            actualizarPosicionCarrusel();
-        }
-        function actualizarPosicionCarrusel() {
-            if (slideContainer.children.length > 0) {
-                const anchoSlide = slideContainer.children[0].clientWidth;
-                slideContainer.style.transform = `translateX(${-anchoSlide * indiceActual}px)`;
-            }
-        }
-        function prevSlide() {
-            indiceActual--;
-            if (indiceActual < 0) {
-                indiceActual = imagenes.length - 1;
-            }
-            actualizarPosicionCarrusel();
-        }
-        function nextSlide() {
-            indiceActual++;
-            if (indiceActual >= imagenes.length) {
-                indiceActual = 0;
-            }
-            actualizarPosicionCarrusel();
-        }
-        document.addEventListener('DOMContentLoaded', initCarousel); 
-        window.addEventListener('resize', actualizarPosicionCarrusel); 
+    <script src="carpeta del sitio incluida la pag. de articulos ( servicios )/carpeta de archivos js/carrusel.js">
+
     </script>
+    
+    </body>
 </body>
+
 </html>
+
+

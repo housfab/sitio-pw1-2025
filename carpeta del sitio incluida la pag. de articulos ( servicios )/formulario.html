@@ -101,14 +101,19 @@
             const confirmarContrasena = document.getElementById('confirmar_contrasena');
             const dataSuccess = document.getElementById('data-success');
 
+            /**
+             * Función principal para validar un campo.
+             */
             function validarCampo(input) {
                 const errorMessageSpan = input.nextElementSibling;
+                // Limpiar estados previos
                 errorMessageSpan.style.display = 'none';
                 input.classList.remove('invalid', 'valid');
                 
                 let isInputValid = input.validity.valid;
                 let errorMessage = '';
 
+                // 1. Manejo de errores por validación nativa (required, pattern, minlength, etc.)
                 if (!isInputValid) {
                     if (input.validity.valueMissing) {
                         errorMessage = 'Este campo es obligatorio.';
@@ -119,12 +124,14 @@
                     }
                 } 
                 
+                // 2. VALIDACIÓN CUSTOM: Comprobación de Contraseña y Confirmación
                 if (input.id === 'confirmar_contrasena') {
-   
+                    // Si el campo de confirmación tiene contenido Y no coincide con el campo principal
                     if (contrasena.value !== confirmarContrasena.value && confirmarContrasena.value.length > 0) {
-                        errorMessage = confirmarContrasena.title; 
+                        errorMessage = confirmarContrasena.title; // "Las contraseñas no coinciden."
                         isInputValid = false;
                     } 
+                    // Si el campo de confirmación está vacío, pero se necesita un mensaje de error 
                     else if (contrasena.value.length > 0 && confirmarContrasena.value.length === 0) {
                          errorMessage = 'Este campo es obligatorio.';
                          isInputValid = false;
@@ -163,12 +170,13 @@
                 }
             });
 
+            // --- MANEJO DEL ENVÍO DEL FORMULARIO (submit) ---
             form.addEventListener('submit', (event) => {
                 event.preventDefault(); 
                 let formValido = true;
                 let firstInvalidInput = null;
                 
-    
+                // 1. Ejecutar la validación en todos los campos
                 inputs.forEach(input => {
                     if (!validarCampo(input)) { 
                         formValido = false;
@@ -183,6 +191,7 @@
                     const nombreUsuario = document.getElementById('usuario').value;
                     const correoUsuario = document.getElementById('correo').value;
                     
+                    // Lógica para el mensaje de éxito
                     dataSuccess.innerHTML = ''; 
                     
                     const iconElement = document.createElement('span');
@@ -195,26 +204,27 @@
                     dataSuccess.appendChild(mensajeExito);
                     
                     const pMensaje = document.createElement('p'); 
-                    pMensaje.style.color = 'var(--color-texto-principal)'; 
+                    pMensaje.style.color = 'var(--color-texto-principal)'; // Asumiendo que esta variable está en estilos.css
                     pMensaje.innerHTML = `El usuario <strong>${nombreUsuario}</strong> con email <strong>${correoUsuario}</strong> ha sido creado con éxito.`;
                     dataSuccess.appendChild(pMensaje);
                     
+                    // Limpieza y feedback visual
                     form.reset();
                     inputs.forEach(input => input.classList.remove('valid', 'invalid'));
                     
-               
+                    // Ocultamos solo el formulario y mostramos el mensaje de éxito
                     form.style.display = 'none';
                     dataSuccess.style.display = 'block';
 
-            
+                    // Ocultar mensaje de éxito y mostrar formulario de nuevo después de 5 segundos
                     setTimeout(() => {
                         dataSuccess.style.display = 'none';
                         form.style.display = 'block';
-                    }, 5000);
+                    }, );0
 
                 } else {
                     dataSuccess.style.display = 'none'; 
-              
+                 
                     if (firstInvalidInput) {
                         firstInvalidInput.focus();
                     }
@@ -224,3 +234,5 @@
     </script>
 </body>
 </html>
+
+ 
