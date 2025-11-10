@@ -1,99 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sé Parte</title>
-    <link rel="stylesheet" href="estilos.css"> 
-</head>
-<body>
-    <div class="nav-container">
-        <nav class="nav-menu">
-            <ul class="nav-list">
-                <li><a href="index.html">Principal</a></li>
-                <li><a href="articulo.html">Servicios</a></li>
-                <li><a href="formulario.html">Contacto</a></li>
-            </ul>
-        </nav>
-    </div>
-    
-    <div class="form-container">
-        <h2>¡Sé Parte!</h2>
-        <p style="margin-bottom: 25px; text-align: center;">Regístrate para obtener **descuentos**, **promociones** y **novedades** exclusivas.</p>
-        
-        <form id="adhesionForm" novalidate>
-            
-            <div class="form-group">
-                <label for="usuario">Nombre de Usuario:</label>
-                <input type="text" id="usuario" name="usuario" required 
-                       pattern="^(?=.*\d).{5,}$" 
-                       title="El usuario debe tener 5 caracteres como mínimo y contener al menos 1 número (0-9)."
-                       maxlength="20"
-                       autocomplete="username">
-                <span class="error-message" aria-live="polite"></span>
-            </div>
-            
-            <div class="form-group">
-                <label for="correo">Mail:</label>
-                <input type="email" id="correo" name="correo" required 
-                       title="Debe ser un correo válido.">
-                <span class="error-message" aria-live="polite"></span>
-            </div>
-
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required 
-                       pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,}" 
-                       title="El nombre debe tener al menos 3 letras y no puede contener números o símbolos."
-                       maxlength="50">
-                <span class="error-message" aria-live="polite"></span>
-            </div>
-            
-            <div class="form-group">
-                <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" required 
-                       pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]{3,}" 
-                       title="El apellido debe tener al menos 3 letras y no puede contener números o símbolos."
-                       maxlength="50">
-                <span class="error-message" aria-live="polite"></span>
-            </div>
-            
-            <div class="form-group">
-                <label for="telefono">Teléfono:</label>
-                <input type="tel" id="telefono" name="telefono" required 
-                       pattern="^\+?\d{3,17}$" 
-                       title="El teléfono es obligatorio y debe tener entre 3 y 17 dígitos (opcionalmente con +)." > 
-                <span class="error-message" aria-live="polite"></span>
-            </div>
-            
-            <div class="form-group">
-                <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" name="contrasena" required 
-                       minlength="6"
-                       title="La contraseña debe tener al menos 6 caracteres."
-                       autocomplete="new-password">
-                <span class="error-message" aria-live="polite"></span>
-            </div>
-            
-            <div class="form-group">
-                <label for="confirmar_contrasena">Confirmar Contraseña:</label>
-                <input type="password" id="confirmar_contrasena" name="confirmar_contrasena" required 
-                       title="Las contraseñas no coinciden.">
-                <span class="error-message" aria-live="polite"></span>
-            </div>
-
-            <button type="submit">Enviar Solicitud</button>
-        </form>
-        
-        <div id="data-success" style="display:none;">
-        </div>
-    </div>
-    
-    <div class="site-footer">
-        <p>© 2025 Proyecto Académico. Derechos reservados.</p>
-    </div>
-    
-    <script>
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('adhesionForm');
             const inputs = form.querySelectorAll('input');
@@ -109,6 +13,7 @@
                 let isInputValid = input.validity.valid;
                 let errorMessage = '';
 
+             
                 if (!isInputValid) {
                     if (input.validity.valueMissing) {
                         errorMessage = 'Este campo es obligatorio.';
@@ -118,9 +23,7 @@
                         errorMessage = 'El valor ingresado es inválido.';
                     }
                 } 
-                
                 if (input.id === 'confirmar_contrasena') {
-   
                     if (contrasena.value !== confirmarContrasena.value && confirmarContrasena.value.length > 0) {
                         errorMessage = confirmarContrasena.title; 
                         isInputValid = false;
@@ -131,7 +34,6 @@
                     }
                 }
 
-                // 3. Aplicar clases y mensaje
                 if (isInputValid && errorMessage === '') {
                     input.classList.add('valid');
                     return true;
@@ -143,20 +45,17 @@
                 }
             }
 
-            // Función de revalidación forzada de la confirmación
             function revalidarConfirmacion() {
-                // Solo revalidamos si ya hay algún valor o si ya se marcó como inválido
                 if (confirmarContrasena.value.length > 0 || confirmarContrasena.classList.contains('invalid')) {
                     validarCampo(confirmarContrasena);
                 }
             }
 
-            // Asignar validación en tiempo real (input) y al perder el foco (blur)
+            // Escucha eventos de blur y input para la validación en tiempo real
             inputs.forEach(input => {
                 input.addEventListener('input', () => validarCampo(input));
                 input.addEventListener('blur', () => validarCampo(input));
                 
-                // Evento específico para revalidar la confirmación si cambia la contraseña principal
                 if (input.id === 'contrasena') {
                     input.addEventListener('input', revalidarConfirmacion);
                     input.addEventListener('blur', revalidarConfirmacion);
@@ -167,8 +66,7 @@
                 event.preventDefault(); 
                 let formValido = true;
                 let firstInvalidInput = null;
-                
-    
+
                 inputs.forEach(input => {
                     if (!validarCampo(input)) { 
                         formValido = false;
@@ -197,16 +95,17 @@
                     const pMensaje = document.createElement('p'); 
                     pMensaje.style.color = 'var(--color-texto-principal)'; 
                     pMensaje.innerHTML = `El usuario <strong>${nombreUsuario}</strong> con email <strong>${correoUsuario}</strong> ha sido creado con éxito.`;
+                    // Ocultamos solo el formulario y mostramos el mensaje de éxito
                     dataSuccess.appendChild(pMensaje);
                     
                     form.reset();
                     inputs.forEach(input => input.classList.remove('valid', 'invalid'));
                     
-               
+
                     form.style.display = 'none';
                     dataSuccess.style.display = 'block';
 
-            
+                    // Ocultar mensaje de éxito y mostrar formulario de nuevo después de 5 segundos
                     setTimeout(() => {
                         dataSuccess.style.display = 'none';
                         form.style.display = 'block';
@@ -214,13 +113,10 @@
 
                 } else {
                     dataSuccess.style.display = 'none'; 
-              
+
                     if (firstInvalidInput) {
                         firstInvalidInput.focus();
                     }
                 }
             });
         });
-    </script>
-</body>
-</html>

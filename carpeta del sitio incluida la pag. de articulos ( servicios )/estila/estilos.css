@@ -1,3 +1,4 @@
+/* Paleta de Colores Burdeos/Vino */
 
 :root {
     --color-fondo-principal: #1a1111; 
@@ -19,7 +20,7 @@ body {
     line-height: 1.6;
 
     /* --- PROPIEDADES DE IMAGEN DE FONDO (background) --- */
-    background-image: url('img/camara_ezviz.jpg'); 
+    background-image: url('../camara_ezviz.jpg'); 
     background-size: cover; 
     background-position: center center; 
     background-repeat: no-repeat; 

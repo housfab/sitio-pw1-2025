@@ -147,7 +147,6 @@
                 }
             }
 
-            // Escucha eventos de blur y input para la validación en tiempo real
             inputs.forEach(input => {
                 input.addEventListener('input', () => validarCampo(input));
                 input.addEventListener('blur', () => validarCampo(input));
@@ -177,6 +176,7 @@
                     const nombreUsuario = document.getElementById('usuario').value;
                     const correoUsuario = document.getElementById('correo').value;
                     
+                    // Lógica para el mensaje de éxito
                     dataSuccess.innerHTML = ''; 
                     
                     const iconElement = document.createElement('span');
@@ -191,7 +191,6 @@
                     const pMensaje = document.createElement('p'); 
                     pMensaje.style.color = 'var(--color-texto-principal)'; 
                     pMensaje.innerHTML = `El usuario <strong>${nombreUsuario}</strong> con email <strong>${correoUsuario}</strong> ha sido creado con éxito.`;
-                    // Ocultamos solo el formulario y mostramos el mensaje de éxito
                     dataSuccess.appendChild(pMensaje);
                     
                     form.reset();
@@ -201,7 +200,6 @@
                     form.style.display = 'none';
                     dataSuccess.style.display = 'block';
 
-                    // Ocultar mensaje de éxito y mostrar formulario de nuevo después de 5 segundos
                     setTimeout(() => {
                         dataSuccess.style.display = 'none';
                         form.style.display = 'block';
